@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2015 (x64) (http://www.altova.com) by Jiyoun Lim (NHN ENTERTAINMENT CORPORATION) -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning" elementFormDefault="qualified" attributeFormDefault="unqualified" vc:minVersion="1.1">
+	<xs:element name="LoginRequest">
+		<xs:annotation>
+			<xs:documentation>로그인 Request</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="userId" type="xs:string"/>
+				<xs:element name="password" type="xs:string"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="LoginResponse">
+		<xs:annotation>
+			<xs:documentation>로그인 Response</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="UserDataType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="UserDataType" id="UserDataType">
+		<xs:annotation>
+			<xs:documentation>회원정보</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="id" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>회원아이디</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="name" type="xs:string" nillable="false">
+				<xs:annotation>
+					<xs:documentation>회원이름</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="email" nillable="false">
+				<xs:annotation>
+					<xs:documentation>회원이메일</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="phone" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="type" nillable="false">
+							<xs:annotation>
+								<xs:documentation>전화번호 유형 (1:집, 2:회사)</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:minInclusive value="1"/>
+									<xs:maxInclusive value="2"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="number" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>전화번호</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
